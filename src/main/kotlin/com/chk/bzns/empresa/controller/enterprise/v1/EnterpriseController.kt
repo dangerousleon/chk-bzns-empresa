@@ -28,9 +28,9 @@ class EnterpriseController {
     fun getEnterprises(
         @PathVariable(Constant.COUNTRY) country: Country
     ): ResponseEntity<List<EnterpriseResponse>> {
-        logger.info("getEnterprises:: INIT in country {}", country)
+        logger.info("getEnterprises:: INIT in x country {}", country)
         val response = enterpriseManager.getEnterprises(country)
-        logger.info("getEnterprises:: ENDS response [{}]", response)
+        logger.info("getEnterprises:: ENDS x response [{}]", response)
         return ResponseEntity(response, HttpStatus.OK)
     }
 
@@ -39,9 +39,9 @@ class EnterpriseController {
         @PathVariable(Constant.COUNTRY) country: Country,
         @PathVariable(Constant.CODE) code: UUID
     ): ResponseEntity<EnterpriseResponse> {
-        logger.info("getEnterpriseByCode:: INIT in country {}", country)
+        logger.info("getEnterpriseByCode:: INIT in x country {}", country)
         val response = enterpriseManager.getEnterpriseByCode(country,code)
-        logger.info("getEnterpriseByCode:: ENDS response [{}]", response)
+        logger.info("getEnterpriseByCode:: ENDS in x response [{}]", response)
         return ResponseEntity(response, HttpStatus.OK)
     }
 }
