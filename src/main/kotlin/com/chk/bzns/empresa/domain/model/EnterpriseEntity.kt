@@ -27,7 +27,7 @@ class EnterpriseEntity(
     var rfc: String,
 
     @Column(name = "address")
-    var adress: String,
+    var address: String,
 
     @Column(name = "phone")
     var phone: String,

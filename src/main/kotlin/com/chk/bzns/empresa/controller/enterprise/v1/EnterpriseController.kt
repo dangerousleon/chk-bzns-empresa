@@ -2,6 +2,7 @@ package com.chk.bzns.empresa.controller.enterprise.v1
 
 import com.chk.bzns.empresa.common.constant.Constant
 import com.chk.bzns.empresa.common.dto.EnterpriseResponse
+import com.chk.bzns.empresa.common.dto.request.EnterpriseRequest
 import com.chk.bzns.empresa.common.enum.Country
 import com.chk.bzns.empresa.common.route.Routes
 import com.chk.bzns.empresa.core.manager.EnterpriseManager
@@ -10,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
@@ -43,5 +47,16 @@ class EnterpriseController {
         val response = enterpriseManager.getEnterpriseByCode(country,code)
         logger.info("getEnterpriseByCode:: ENDS in x response [{}]", response)
         return ResponseEntity(response, HttpStatus.OK)
+    }
+
+    @PostMapping(Routes.Enterprise.ENTERPRISE)
+    fun postEnterprise(
+        @PathVariable(Constant.COUNTRY) country: Country,
+        @RequestBody @Validated request: EnterpriseRequest
+    ):ResponseEntity<EnterpriseResponse>{
+        logger.info("postEnterprise :: INIT request {} country {} ", request, country)
+        val response= enterpriseManager.postEnterprise(request, country)
+        logger.info("postEnterprise:: ENDS in x response [{}]", response)
+        return ResponseEntity(response, HttpStatus.CREATED)
     }
 }
