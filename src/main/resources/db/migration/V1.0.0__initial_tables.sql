@@ -4,7 +4,7 @@ CREATE TABLE public.enterprise(
 	name_enterprise varchar NOT NULL,
 	rfc varchar NULL,
 	address varchar NULL,
-	phone numeric NOT NULL,
+	phone varchar NOT NULL,
 	email varchar NOT NULL,
 	state varchar NOT NULL,
 	image varchar NULL,
